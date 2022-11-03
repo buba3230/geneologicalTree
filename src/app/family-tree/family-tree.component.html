@@ -1,0 +1,22 @@
+<div class="tree">
+    <ul>
+      <li>
+        <div class="top">
+          <span  *ngFor="let node of family.nodes" (click)="_leafSelected(node)"
+                 class="{{node.gender}}"
+                 [ngClass]="node.relationship ? node.relationship + '-leaf' : ''"
+                 class="node">
+                 <div class="avatar">
+                   <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
+                 </div>
+                 <br>
+                 {{node.name}}:<br>{{node.gender}}</span>
+        </div>
+        <ul>
+          <li *ngFor="let child of family.children" [ngStyle]="{'width': _setWidth(child) ? '100%' : 'auto'}" >
+            <ft-leaf (onLeafSelected)="_leafSelected($event)" [child]="child"></ft-leaf>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
