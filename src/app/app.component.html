@@ -1,1 +1,3 @@
-<family-tree (onLeafSelected)="onLeafSelected($event)" [family]="family"></family-tree>
+<ng-container *ngIf="tree$ | async as tree ">
+    <family-tree (onLeafSelected)="onLeafSelected($event)" [family]="tree"></family-tree>
+</ng-container>

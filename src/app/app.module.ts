@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FamilyTreeModule } from './family-tree/family-tree.module';
+import { TreeService } from './services/tree.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -13,9 +15,10 @@ import { FamilyTreeModule } from './family-tree/family-tree.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FamilyTreeModule
   ],
-  providers: [],
+  providers: [TreeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

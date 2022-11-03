@@ -1,55 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Family } from './family-tree/models/family.model';
+import { TreeService } from './services/tree.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'family-tree';
+  tree$: Observable<Family>;
+
+  constructor(private treeService: TreeService) {
+    this.tree$ = this.treeService.getTree();
+    this.tree$.subscribe(tree => console.log(tree));
+  }
+  ngOnInit(): void {
+
+  }
 
   onLeafSelected(data) {
     console.log(data);
   }
-
-  family = {
-    nodes: [
-      { name: 'Father', gender: 'male' },
-      { name: 'Mather', gender: 'female' }
-    ],
-    children: [
-      {
-        nodes: [
-          { name: 'Son', gender: 'male', relationship: 'self' },
-        ],
-        children: [
-          {
-            nodes: [{ name: 'Grand Child 1', gender: 'female' }], children:
-              [{ nodes: [{ name: 'Grand Grand Child 1', gender: 'male' }] },
-              { nodes: [{ name: 'Grand Grand Child 2', gender: 'female' }] }]
-          },
-          { nodes: [{ name: 'Grand Child 2', gender: 'female' }] },
-          { nodes: [{ name: 'Grand Child 3', gender: 'male' }] }
-        ]
-      },
-      {
-        nodes: [
-          { name: 'Doughter', gender: 'female', relationship: 'self' },
-        ],
-        children: [
-          { nodes: [{ name: 'Grand Child 4', gender: 'male' }] },
-          { nodes: [{ name: 'Grand Child 6', gender: 'female' }] }
-        ]
-      },
-      {
-        nodes: [
-          { name: 'Doughter', gender: 'female', relationship: 'self' },
-        ],
-        children: [
-          { nodes: [{ name: 'Grand Child 7', gender: 'male' }] },
-          { nodes: [{ name: 'Grand Child 8', gender: 'female' }] }
-        ]
-      }]
-  };
-
 }
