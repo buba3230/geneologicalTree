@@ -1,3 +1,8 @@
+<button (click)="onCreate()">Create node</button>
+<ng-container *ngIf="operation==='create'">
+    <router-outlet></router-outlet>
+</ng-container>
+
 <ng-container *ngIf="tree$ | async as tree ">
     <family-tree (onLeafSelected)="onLeafSelected($event)" [family]="tree"></family-tree>
 </ng-container>

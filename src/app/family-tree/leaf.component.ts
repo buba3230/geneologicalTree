@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Family } from './models/family.model';
+import { LeafClass } from './models/leaf-abstract-class';
 
 @Component({
-    selector: 'ft-leaf',
-    template: `
+  selector: 'tree-leaf',
+  template: `
     <div>
       <span  *ngFor="let node of child.nodes" class="node"
              [ngClass]="node.relationship ? node.relationship + '-leaf' : ''"
@@ -16,20 +17,22 @@ import { Family } from './models/family.model';
     </div>
     <ul *ngIf="child.children && child.children.length > 0">
       <li *ngFor="let row of child.children" [ngStyle]="{'width': child.children.length === 1 ? '100%' : 'auto'}">
-        <ft-leaf (onLeafSelected)="_leafSelected($event)" [child]="row"></ft-leaf>
+        <tree-leaf (onLeafSelected)="_leafSelected($event)" [child]="row"></tree-leaf>
       </li>
     </ul>
   `
 })
-export class LeafComponent {
+export class LeafComponent extends LeafClass {
 
-    @Input() child: Family;
-    @Output() onLeafSelected: EventEmitter<Family> = new EventEmitter();
+  @Input() child: Family;
+  @Output() onLeafSelected: EventEmitter<Family> = new EventEmitter();
 
-    constructor() { }
+  constructor() {
+    super();
+  }
 
-    _leafSelected(_leaf) {
-        this.onLeafSelected.emit(_leaf);
-    }
+  _leafSelected(_leaf: Family) {
+    this.onLeafSelected.emit(_leaf);
+  }
 
 }

@@ -14,7 +14,7 @@
         </div>
         <ul>
           <li *ngFor="let child of family.children" [ngStyle]="{'width': _setWidth(child) ? '100%' : 'auto'}" >
-            <ft-leaf (onLeafSelected)="_leafSelected($event)" [child]="child"></ft-leaf>
+            <tree-leaf (onLeafSelected)="_leafSelected($event)" [child]="child"></tree-leaf>
           </li>
         </ul>
       </li>

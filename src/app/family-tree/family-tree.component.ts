@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Family } from './models/family.model';
+import { LeafClass } from './models/leaf-abstract-class';
 
 @Component({
   selector: 'family-tree',
@@ -7,17 +8,19 @@ import { Family } from './models/family.model';
   styleUrls: ['./family-tree.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FamilyTreeComponent implements OnInit {
+export class FamilyTreeComponent extends LeafClass implements OnInit {
 
   @Input() family: Family;
   @Output() onLeafSelected: EventEmitter<Family> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
   }
 
-  _leafSelected(_leaf) {
+  _leafSelected(_leaf: Family) {
     this.onLeafSelected.emit(_leaf);
   }
 
