@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-node',
+  selector: 'node',
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.scss']
 })

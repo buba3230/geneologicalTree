@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
   onClear(): void {
     const confirm = window.confirm('Are you shure !!! ???')
     if (confirm) {
+      this.operation = null;
       this.tree$ = this.treeService.clearTree(1);
     }
   }

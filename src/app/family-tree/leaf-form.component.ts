@@ -12,7 +12,7 @@ import { TreeNode } from './models/node.model';
                 <label for="id">ID: </label>
             </td>
             <td>
-                <input id="id" type="text" formControlName="id" [attr.disabled]="_root">
+                <input id="id" type="text" formControlName="id" [readonly]="_root">
             </td>
         </tr>
         <tr>
@@ -47,9 +47,16 @@ import { TreeNode } from './models/node.model';
                 <label for="relationship">Relationship: </label>
             </td>
             <td>
-                <select id="genrelationshipder" formControlName="relationship" style="width: 100%" [attr.disabled]="_root">
-                    <option value="self">Self</option>
+                <select id="genrelationshipder" formControlName="relationship" style="width: 100%">
+                    <ng-container *ngIf="_root; else notRootItems">
+                        <option value="" selected>None</option>
+                    </ng-container>
+                    
                 </select>
+                <ng-template #notRootItems>
+                    <option value="" selected>None</option>
+                    <option value="self">Self</option>
+                </ng-template>
             </td>
         </tr>
     </table>
@@ -63,10 +70,11 @@ import { TreeNode } from './models/node.model';
 export class LeafFormComponent implements OnInit {
     _root = false;
     @Input() set root(value: boolean) {
+        this._root = value;
         if (value) {
-            this._root = value;
             this.nodeForm.get('id').setValue(1);
         }
+
     };
     @Input() visibleSubmit = false;
     @Input() set emmitSubmit(value: boolean) {

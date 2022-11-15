@@ -3,7 +3,7 @@
     <button (click)="onCreateRoot()" class="btn">Create root</button>
     <button (click)="onCreate()" class="btn">Create node</button>
     <ng-container *ngIf="operation==='createLeaf'">
-        <router-outlet></router-outlet>
+        <node></node>
     </ng-container>
     <ng-container *ngIf="operation==='createRoot'">
         <app-tree-root (triggerUpdate)="handleUpdate($event)"></app-tree-root>

@@ -7,7 +7,7 @@ import { FamilyTreeModule } from './family-tree/family-tree.module';
 import { TreeService } from './services/tree.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TreeRootModule } from './tree-root/tree-root.module';
-
+import { NodeModule } from './node/node.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { TreeRootModule } from './tree-root/tree-root.module';
     AppRoutingModule,
     HttpClientModule,
     FamilyTreeModule,
-    TreeRootModule
+    TreeRootModule,
+    NodeModule
   ],
   providers: [TreeService],
   bootstrap: [AppComponent]
