@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: 'node',
     loadChildren: () => import('./node/node.module').then(m => m.NodeModule)
-  }
+  },
+  {
+    path: 'root',
+    loadChildren: () => import('./tree-root/tree-root.module').then(m => m.TreeRootModule)
+  },
+
 ];
 
 @NgModule({

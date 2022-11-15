@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Family } from './family-tree/models/family.model';
 import { TreeNode } from './family-tree/models/node.model';
 import { TreeService } from './services/tree.service';
 
-export type Operation = 'create' | 'edit' | null;
+export type Operation = 'createLeaf' | 'createRoot' | 'edit' | null;
 
 @Component({
   selector: 'app-root',
@@ -12,16 +13,16 @@ export type Operation = 'create' | 'edit' | null;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'family-tree';
   tree$: Observable<Family>;
 
   operation: Operation = null;
 
-  constructor(private treeService: TreeService) {
-    this.tree$ = this.treeService.getTree();
+  constructor(private treeService: TreeService, private router: Router) {
+
   }
   ngOnInit(): void {
-
+    this.operation = null;
+    this.tree$ = this.treeService.getTree();
   }
 
   onLeafSelected(familyMember: TreeNode) {
@@ -30,10 +31,36 @@ export class AppComponent implements OnInit {
 
   onCreate(): void {
     if (this.operation === null) {
-      this.operation = 'create';
+      this.operation = 'createLeaf';
+      this.router.navigate(['node']);
     }
     else {
       this.operation = null;
+      this.router.navigate(['/']);
+    }
+  }
+
+  onClear(): void {
+    const confirm = window.confirm('Are you shure !!! ???')
+    if (confirm) {
+      this.tree$ = this.treeService.clearTree(1);
+    }
+  }
+
+  onCreateRoot(): void {
+    if (this.operation === null) {
+      this.operation = 'createRoot';
+      this.router.navigate(['root']);
+    }
+    else {
+      this.operation = null;
+      this.router.navigate(['/']);
+    }
+  }
+
+  handleUpdate(value: boolean): void {
+    if (value) {
+      this.ngOnInit();
     }
   }
 }

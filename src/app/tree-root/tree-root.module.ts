@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { NodeComponent } from './node.component';
+import { TreeRootComponent } from './tree-root.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LeafFormComponent } from '../family-tree/leaf-form.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: NodeComponent
+        component: TreeRootComponent
     }
 ];
 
@@ -18,7 +19,7 @@ const routes: Routes = [
         ReactiveFormsModule,
         RouterModule.forChild(routes),
     ],
-    declarations: [NodeComponent],
-    exports: [NodeComponent]
+    declarations: [TreeRootComponent, LeafFormComponent],
+    exports: [TreeRootComponent]
 })
-export class NodeModule { }
+export class TreeRootModule { }

@@ -1,1 +1,19 @@
-<p>node works!</p>
+<form [formGroup]="nodeForm" (ngSubmit)="onSubmit()" class="form">
+
+    <label for="fullName">Full name: </label>
+    <input id="fullName" type="text" formControlName="fullName">
+    <br>
+    <label for="yearsOfLife">Years of life: </label>
+    <input id="lyearsOfLife" type="text" formControlName="yearsOfLife">
+    <br>
+    <label for="gender">Gender: </label>
+    <select id="gender" formControlName="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br>
+    <label for="relationship">Relationship: </label>
+    <input id="relationship" type="text" formControlName="relationship">
+    <br>
+    <button type="submit" class="btn">Save</button>
+  </form>

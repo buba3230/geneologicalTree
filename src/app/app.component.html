@@ -1,7 +1,15 @@
-<button (click)="onCreate()">Create node</button>
-<ng-container *ngIf="operation==='create'">
-    <router-outlet></router-outlet>
-</ng-container>
+<div class="operations">
+    <button (click)="onClear()" class="btn">Clear tree</button>
+    <button (click)="onCreateRoot()" class="btn">Create root</button>
+    <button (click)="onCreate()" class="btn">Create node</button>
+    <ng-container *ngIf="operation==='createLeaf'">
+        <router-outlet></router-outlet>
+    </ng-container>
+    <ng-container *ngIf="operation==='createRoot'">
+        <app-tree-root (triggerUpdate)="handleUpdate($event)"></app-tree-root>
+    </ng-container>
+</div>
+
 
 <ng-container *ngIf="tree$ | async as tree ">
     <family-tree (onLeafSelected)="onLeafSelected($event)" [family]="tree"></family-tree>

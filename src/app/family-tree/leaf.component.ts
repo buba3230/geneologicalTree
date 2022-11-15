@@ -9,6 +9,11 @@ import { LeafClass } from './models/leaf-abstract-class';
       <span  *ngFor="let node of child.nodes" class="node"
              [ngClass]="node.relationship ? node.relationship + '-leaf' : ''"
              (click)="_leafSelected(node)" [class]="node.gender">
+             <div class="panel">
+              <img src="/assets/imgs/edit.png" alt="edit" class="delete">
+              <img src="/assets/imgs/delete.png" alt="delete" class="delete">
+             </div>
+             <br>
              <div class="avatar">
                    <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
                  </div>

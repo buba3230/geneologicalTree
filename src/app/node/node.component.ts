@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-node',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NodeComponent implements OnInit {
 
+  nodeForm = new FormGroup({
+    fullName: new FormControl(''),
+    yearsOfLife: new FormControl(''),
+    gender: new FormControl(''),
+    relationship: new FormControl(''),
+  });
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    console.warn(this.nodeForm.value);
   }
 
 }
