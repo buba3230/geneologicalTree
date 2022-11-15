@@ -16,6 +16,7 @@ export type Operation = 'createLeaf' | 'createRoot' | 'edit' | null;
 export class AppComponent implements OnInit {
   tree$: Observable<Family>;
   selectedMember: Family | null;
+  selectedParentMember: Family | null;
   operation: Operation = null;
 
   constructor(private treeService: TreeService, private router: Router) {
@@ -33,12 +34,17 @@ export class AppComponent implements OnInit {
   findMember(familyMember: TreeNode): void {
     this.tree$.pipe(take(1)).subscribe(
       family => {
-        const result = this.searchTree(family, familyMember);
+        const current = this.searchTree(family, familyMember);
+
+        const parent = this.searchParent(family, familyMember);
+
         if (this.selectedMember) {
           this.selectedMember = null;
+          this.selectedParentMember = null;
         }
         else {
-          this.selectedMember = result;
+          this.selectedMember = current;
+          this.selectedParentMember = parent;
         }
 
       });
@@ -46,6 +52,7 @@ export class AppComponent implements OnInit {
 
   searchTree(member: Family, familyMember: TreeNode): Family {
     const people = member?.nodes.find(m => m.fullName === familyMember.fullName && m.yearsOfLife === familyMember.yearsOfLife);
+
     if (people) {
       return member;
     } else if (member?.children != null) {
@@ -53,6 +60,22 @@ export class AppComponent implements OnInit {
       var result = null;
       for (i = 0; result == null && i < member.children.length; i++) {
         result = this.searchTree(member.children[i], familyMember);
+      }
+      return result;
+    }
+    return null;
+  }
+
+  searchParent(member: Family, familyMember: TreeNode): Family {
+    const people = member?.children.find(m => m.nodes[0].fullName === familyMember.fullName && m.nodes[0].yearsOfLife === familyMember.yearsOfLife);
+
+    if (people) {
+      return member;
+    } else if (member?.children != null) {
+      var i;
+      var result = null;
+      for (i = 0; result == null && i < member.children.length; i++) {
+        result = this.searchParent(member.children[i], familyMember);
       }
       return result;
     }
@@ -109,15 +132,29 @@ export class AppComponent implements OnInit {
   }
 
   handleUpdateNode(node: Family): void {
-    console.log(node);
     this.tree$.pipe(take(1)).subscribe(
       family => {
         const res = this.updatePropertyById(node, family, 'children', node.children);
         this.operation = null;
         this.selectedMember = null;
+        this.selectedParentMember = null;
         this.treeService.updateRoot(res).pipe(take(1)).subscribe();
         this.tree$ = this.treeService.getTree();
       });
+  }
 
+  onDelete(): void {
+    const confirm = window.confirm('Are you shure !!! ???')
+    if (confirm && this.selectedMember) {
+      this.tree$.pipe(take(1)).subscribe(
+        family => {
+          const res = this.updatePropertyById(this.selectedParentMember, family, 'children', this.selectedParentMember.children.filter(c => c.id !== this.selectedMember.id));
+          this.operation = null;
+          this.selectedMember = null;
+          this.selectedParentMember = null;
+          this.treeService.updateRoot(res).pipe(take(1)).subscribe();
+          this.tree$ = this.treeService.getTree();
+        });
+    }
   }
 }
