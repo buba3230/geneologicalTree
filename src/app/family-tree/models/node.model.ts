@@ -1,5 +1,6 @@
 export class TreeNode {
-    name: string;
+    id: string;
+    fullName: string;
     yearsOfLife: string;
     gender: string;
     relationship: string;

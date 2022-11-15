@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Family } from '../family-tree/models/family.model';
+import { TreeNode } from '../family-tree/models/node.model';
 
 @Component({
   selector: 'node',
@@ -7,21 +8,32 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./node.component.scss']
 })
 export class NodeComponent implements OnInit {
-
-  nodeForm = new FormGroup({
-    fullName: new FormControl(''),
-    yearsOfLife: new FormControl(''),
-    gender: new FormControl(''),
-    relationship: new FormControl(''),
-  });
-
+  @Input() selectedNode: Family | null;
+  submitNodes = false;
+  submitedMember: TreeNode;
+  @Output() updatedNode: EventEmitter<Family> = new EventEmitter<Family>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    console.warn(this.nodeForm.value);
+  handleMember(member: TreeNode): void {
+    this.submitedMember = member;
+  }
+
+  emmitSubmit() {
+    this.submitNodes = true;
+    setTimeout(() => {
+      if (!this.selectedNode.children) {
+        this.selectedNode.children = [];
+      }
+      this.selectedNode.children.push({
+        id: this.submitedMember.id,
+        nodes: [this.submitedMember],
+        children: []
+      });
+      this.updatedNode.emit(this.selectedNode);
+    }, 0);
   }
 
 }

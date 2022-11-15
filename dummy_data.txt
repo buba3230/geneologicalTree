@@ -1,43 +1,183 @@
 {
-  "tree": [{
+  "tree": [
+  {
     "id": "1",
     "nodes": [
-      { "name": "Father", "yearsOfLife": "1900-1950", "gender": "male" },
-      { "name": "Mather", "yearsOfLife": "1903-1958", "gender": "female" }
+      {
+        "id": 1,
+        "fullName": "Father",
+        "yearsOfLife": "1905-1960",
+        "gender": "male"
+      },
+      {
+        "id": 1,
+        "fullName": "Mother",
+        "yearsOfLife": "1905-1965",
+        "gender": "female"
+      }
     ],
     "children": [
-      { "id": "2",
+      {
+        "id": "2",
         "nodes": [
-          { "name": "Son1", "yearsOfLife": "1920-1975", "gender": "male", "relationship": "self" }
+          {
+            "id": "2",
+            "fullName": "Son1",
+            "yearsOfLife": "1920-1975",
+            "gender": "male",
+            "relationship": ""
+          }
         ],
         "children": [
-          { "id": "5",
-            "nodes": [{ "name": "Grand Child 1", "yearsOfLife": "1950-2010", "gender": "female" }], 
-            "children":
-              [{ "id": "12", "nodes": [{ "name": "Grand Grand Child 1", "yearsOfLife": "1984-... ", "gender": "male" }] },
-              { "id": "13", "nodes": [{ "name": "Grand Grand Child 2", "yearsOfLife": "1989-...", "gender": "female" }] }]
+          {
+            "id": "5",
+            "nodes": [
+              {
+                "id": "5",
+                "fullName": "Grand Child 1",
+                "yearsOfLife": "1950-2010",
+                "gender": "female",
+                "relationship": ""
+              }
+            ],
+            "children": [
+              {
+                "id": "12",
+                "nodes": [
+                  {
+                    "id": "12",
+                    "fullName": "Grand Grand Child 1",
+                    "yearsOfLife": "1984-...",
+                    "gender": "male",
+                    "relationship": ""
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": "13",
+                "nodes": [
+                  {
+                    "id": "13",
+                    "fullName": "Grand Grand Child 2",
+                    "yearsOfLife": "1989-...",
+                    "gender": "female",
+                    "relationship": ""
+                  }
+                ],
+                "children": []
+              }
+            ]
           },
-          { "id": "6", "nodes": [{ "name": "Grand Child 2", "yearsOfLife": "1952-2008", "gender": "female" }] },
-          { "id": "7", "nodes": [{ "name": "Grand Child 3", "yearsOfLife": "1955-2018", "gender": "male" }] }
+          {
+            "id": "6",
+            "nodes": [
+              {
+                "id": "6",
+                "fullName": "Grand Child 2",
+                "yearsOfLife": "1952-2008",
+                "gender": "female",
+                "relationship": ""
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "7",
+            "nodes": [
+              {
+                "id": "7",
+                "fullName": "Grand Child 3",
+                "yearsOfLife": "1955-2018",
+                "gender": "male",
+                "relationship": ""
+              }
+            ],
+            "children": []
+          }
         ]
       },
-      { "id": "3",
+      {
+        "id": "3",
         "nodes": [
-          { "name": "Doughter", "yearsOfLife": "1921-1980",  "gender": "female", "relationship": "self" }
+          {
+            "id": "3",
+            "fullName": "Doughter",
+            "yearsOfLife": "1921-1980",
+            "gender": "female",
+            "relationship": ""
+          }
         ],
         "children": [
-          { "id": "8", "nodes": [{ "name": "Grand Child 4", "gender": "male" }] },
-          { "id": "9", "nodes": [{ "name": "Grand Child 6", "gender": "female" }] }
+          {
+            "id": "8",
+            "nodes": [
+              {
+                "id": "8",
+                "fullName": "Grand Child 4",
+                "yearsOfLife": "1952-2010",
+                "gender": "female",
+                "relationship": ""
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "9",
+            "nodes": [
+              {
+                "id": "9",
+                "fullName": "Grand Child 6",
+                "yearsOfLife": "1955-2020",
+                "gender": "male",
+                "relationship": ""
+              }
+            ],
+            "children": []
+          }
         ]
       },
-      { "id": "4",
+      {
+        "id": "4",
         "nodes": [
-          { "name": "Doughter", "yearsOfLife": "1924-1984",  "gender": "female", "relationship": "self" }
+          {
+            "id": "4",
+            "fullName": "Doughter",
+            "yearsOfLife": "1924-1984",
+            "gender": "female",
+            "relationship": ""
+          }
         ],
         "children": [
-          { "id": "10", "nodes": [{ "name": "Grand Child 7", "gender": "male" }] },
-          { "id": "11", "nodes": [{ "name": "Grand Child 8", "gender": "female" }] }
+          {
+            "id": "10",
+            "nodes": [
+              {
+                "id": "10",
+                "fullName": "Grand Child 7",
+                "yearsOfLife": "1960-...",
+                "gender": "female",
+                "relationship": ""
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "11",
+            "nodes": [
+              {
+                "id": "11",
+                "fullName": "Grand Child 8",
+                "yearsOfLife": "1970-...",
+                "gender": "male",
+                "relationship": ""
+              }
+            ],
+            "children": []
+          }
         ]
-      }]
-}]
+      }
+    ]
+  }
+]
 }

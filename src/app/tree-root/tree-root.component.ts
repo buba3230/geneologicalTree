@@ -36,7 +36,9 @@ export class TreeRootComponent implements OnInit {
     setTimeout(() => {
       delete this.fam1.relationship;
       delete this.fam2.relationship;
-      const root: Family = { id: "1", nodes: [this.fam1, this.fam2], children: [] };
+      const root: Family = {
+        id: "1", nodes: [this.fam1, this.fam2], children: []
+      };
       this.treeService.createRoot(root).pipe(take(1)).subscribe(() => {
         this.triggerUpdate.emit(true);
         this.router.navigate(['/']);

@@ -42,23 +42,6 @@ import { TreeNode } from './models/node.model';
                 </select>
             </td>
         </tr>
-        <tr>
-            <td>
-                <label for="relationship">Relationship: </label>
-            </td>
-            <td>
-                <select id="genrelationshipder" formControlName="relationship" style="width: 100%">
-                    <ng-container *ngIf="_root; else notRootItems">
-                        <option value="" selected>None</option>
-                    </ng-container>
-                    
-                </select>
-                <ng-template #notRootItems>
-                    <option value="" selected>None</option>
-                    <option value="self">Self</option>
-                </ng-template>
-            </td>
-        </tr>
     </table>
     <ng-container *ngIf="visibleSubmit">
         <button type="submit" class="btn">Save</button>

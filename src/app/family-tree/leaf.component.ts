@@ -18,7 +18,7 @@ import { LeafClass } from './models/leaf-abstract-class';
                    <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
                  </div>
                  <br>
-             {{node.name}}:<br>{{node.gender}}</span>
+                 {{child.id}} ) {{node.fullName}}:<br>{{node.gender}}<br>{{node.yearsOfLife}}</span>
     </div>
     <ul *ngIf="child.children && child.children.length > 0">
       <li *ngFor="let row of child.children" [ngStyle]="{'width': child.children.length === 1 ? '100%' : 'auto'}">

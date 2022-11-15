@@ -33,7 +33,15 @@ export class TreeService {
         return this.http.post<Family>(this.url, newRoot).pipe(
             map(tree => tree[0]),
             tap(_ => console.log('added tree root')),
-            catchError((error) => throwError(`Server do not response. Error : ${error.toString()}`))
+            catchError((error) => throwError(`Post => Server do not response. Error : ${error.toString()}`))
+        );
+    }
+
+    updateRoot(updatedRoot: Family): Observable<Family> {
+        return this.http.put<Family>(this.url + '/1', updatedRoot).pipe(
+            map(tree => tree[0]),
+            tap(_ => console.log('update tree root')),
+            catchError((error) => throwError(`Put => Server do not response. Error : ${error.toString()}`))
         );
     }
 

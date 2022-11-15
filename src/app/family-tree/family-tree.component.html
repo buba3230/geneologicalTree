@@ -10,7 +10,7 @@
                    <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
                  </div>
                  <br>
-                 {{node.fullName}}:<br>{{node.gender}}</span>
+                 {{family.id}} ) {{node.fullName}}:<br>{{node.gender}}<br>{{node.yearsOfLife}}</span>
         </div>
         <ul>
           <li *ngFor="let child of family.children" [ngStyle]="{'width': _setWidth(child) ? '100%' : 'auto'}" >

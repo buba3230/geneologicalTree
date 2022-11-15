@@ -1,2 +1,8 @@
-<leaf-form [root] ="false"></leaf-form>
-<button>Save</button>
+<ng-container *ngIf="selectedNode">
+    <span class="header">Was selected: {{selectedNode.nodes[0].fullName}}: {{selectedNode.nodes[0].yearsOfLife}}</span>
+    <leaf-form [emmitSubmit]="submitNodes" (leaf)="handleMember($event)" [root] ="false"></leaf-form>
+    <button (click)="emmitSubmit()">Save</button>
+</ng-container>
+<ng-container *ngIf="!selectedNode">
+    <span class="error">Please select a member of the family</span>
+</ng-container>
