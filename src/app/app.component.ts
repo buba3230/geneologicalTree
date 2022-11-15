@@ -144,8 +144,12 @@ export class AppComponent implements OnInit {
   }
 
   onDelete(): void {
-    const confirm = window.confirm('Are you shure !!! ???')
-    if (confirm && this.selectedMember) {
+    if (!this.selectedMember) {
+      window.alert('SELECT Family member first!!!');
+      return;
+    }
+    const confirm = window.confirm('Are you shure to delete ' + this.selectedMember.nodes[0].fullName + ' ???');
+    if (confirm) {
       this.tree$.pipe(take(1)).subscribe(
         family => {
           const res = this.updatePropertyById(this.selectedParentMember, family, 'children', this.selectedParentMember.children.filter(c => c.id !== this.selectedMember.id));
