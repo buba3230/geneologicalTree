@@ -7,6 +7,14 @@ import { TreeNode } from './models/node.model';
     template: `
   <form [formGroup]="nodeForm" (ngSubmit)="onSubmit()" class="form">
     <table>
+            <tr>
+            <td>
+                <label for="id">ID: </label>
+            </td>
+            <td>
+                <input id="id" type="text" formControlName="id" [attr.disabled]="_root">
+            </td>
+        </tr>
         <tr>
             <td>
                 <label for="fullName">Full name: </label>
@@ -39,7 +47,9 @@ import { TreeNode } from './models/node.model';
                 <label for="relationship">Relationship: </label>
             </td>
             <td>
-                <input id="relationship" type="text" formControlName="relationship">
+                <select id="genrelationshipder" formControlName="relationship" style="width: 100%" [attr.disabled]="_root">
+                    <option value="self">Self</option>
+                </select>
             </td>
         </tr>
     </table>
@@ -51,6 +61,13 @@ import { TreeNode } from './models/node.model';
     styleUrls: []
 })
 export class LeafFormComponent implements OnInit {
+    _root = false;
+    @Input() set root(value: boolean) {
+        if (value) {
+            this._root = value;
+            this.nodeForm.get('id').setValue(1);
+        }
+    };
     @Input() visibleSubmit = false;
     @Input() set emmitSubmit(value: boolean) {
         if (value) {
@@ -59,6 +76,7 @@ export class LeafFormComponent implements OnInit {
     }
     @Output() leaf: EventEmitter<TreeNode> = new EventEmitter<TreeNode>();
     nodeForm = new FormGroup({
+        id: new FormControl(''),
         fullName: new FormControl(''),
         yearsOfLife: new FormControl(''),
         gender: new FormControl(''),

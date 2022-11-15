@@ -1,9 +1,9 @@
 <div class="root">
     <div class="left">
-        <leaf-form [emmitSubmit]="submitNodes" (leaf)="hendleLeaf($event, 1)"></leaf-form>
+        <leaf-form [emmitSubmit]="submitNodes" (leaf)="hendleLeaf($event, 1)" [root]="true"></leaf-form>
     </div>
     <div class="right">
-        <leaf-form [emmitSubmit]="submitNodes" (leaf)="hendleLeaf($event, 2)"></leaf-form>
+        <leaf-form [emmitSubmit]="submitNodes" (leaf)="hendleLeaf($event, 2)" [root]="true"></leaf-form>
     </div>
 </div>
 <button (click)="createRoot()">Create root</button>

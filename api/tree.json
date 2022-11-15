@@ -1,3 +1,22 @@
 {
-  "tree": []
+  "tree": [
+    {
+      "id": "1",
+      "nodes": [
+        {
+          "id": 1,
+          "fullName": "Father",
+          "yearsOfLife": "1905-1960",
+          "gender": "male"
+        },
+        {
+          "id": 1,
+          "fullName": "Mother",
+          "yearsOfLife": "1905-1965",
+          "gender": "female"
+        }
+      ],
+      "children": []
+    }
+  ]
 }
