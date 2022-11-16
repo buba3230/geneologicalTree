@@ -7,7 +7,12 @@
                  [ngClass]="node.relationship ? node.relationship + '-leaf' : ''"
                  class="node">
                  <div class="avatar">
-                   <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
+                  <ng-container *ngIf="node.gender==='male'">
+                    <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
+                  </ng-container>
+                  <ng-container *ngIf="node.gender==='female'">
+                    <img src="/assets/imgs/woo.png" alt="avatar" class="avatar">
+                  </ng-container>
                  </div>
                  <br>
                  {{family.id}} ) {{node.fullName}}:<br>{{node.gender}}<br>{{node.yearsOfLife}}</span>

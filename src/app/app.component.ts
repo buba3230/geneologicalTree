@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
           this.selectedMember = current;
           this.selectedParentMember = parent;
         }
-
       });
   }
 
@@ -112,6 +111,17 @@ export class AppComponent implements OnInit {
     }
   }
 
+  onEdit(): void {
+    if (this.operation === null) {
+      this.operation = "edit";
+      this.router.navigate(['node']);
+    }
+    else {
+      this.operation = null;
+      this.router.navigate(['/']);
+    }
+  }
+
   handleUpdate(value: boolean): void {
     if (value) {
       this.ngOnInit();
@@ -131,10 +141,29 @@ export class AppComponent implements OnInit {
     return data;
   }
 
-  handleUpdateNode(node: Family): void {
+  updateNode(node: Family, data: Family, value: Family) {
+    if (data.id == node.id) {
+      data = value;
+    }
+    if (data.children !== undefined && data.children.length > 0) {
+      for (let i = 0; i < data.children.length; i++) {
+        data.children[i] = this.updateNode(node, data.children[i], value);
+      }
+    }
+
+    return data;
+  }
+
+  handleUpdateNode(node: Family, edit = false): void {
     this.tree$.pipe(take(1)).subscribe(
       family => {
-        const res = this.updatePropertyById(node, family, 'children', node.children);
+        let res: Family;
+        if (!edit) {
+          res = this.updatePropertyById(node, family, 'children', node.children);
+        }
+        else {
+          res = this.updateNode(this.selectedMember, family, node);
+        }
         this.operation = null;
         this.selectedMember = null;
         this.selectedParentMember = null;

@@ -12,7 +12,7 @@ import { TreeNode } from './models/node.model';
                 <label for="id">ID: </label>
             </td>
             <td>
-                <input id="id" type="text" formControlName="id" [readonly]="_root">
+                <input id="id" type="text" formControlName="id" [readonly]="_root" [(ngModel)]='_editNode.id'>
             </td>
         </tr>
         <tr>
@@ -20,7 +20,7 @@ import { TreeNode } from './models/node.model';
                 <label for="fullName">Full name: </label>
             </td>
             <td>
-                <input id="fullName" type="text" formControlName="fullName">
+                <input id="fullName" type="text" formControlName="fullName" [(ngModel)]='_editNode.fullName'>
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@ import { TreeNode } from './models/node.model';
                 <label for="yearsOfLife">Years of life: </label>
             </td>
             <td>
-                <input id="lyearsOfLife" type="text" formControlName="yearsOfLife">
+                <input id="lyearsOfLife" type="text" formControlName="yearsOfLife" [(ngModel)]='_editNode.yearsOfLife'>
             </td>
         </tr>
         <tr>
@@ -63,6 +63,27 @@ export class LeafFormComponent implements OnInit {
     @Input() set emmitSubmit(value: boolean) {
         if (value) {
             this.onSubmit();
+        }
+    }
+    _editNode: TreeNode;
+    @Input() set editedNode(node: TreeNode | null) {
+        if (!node) {
+            this._editNode = {
+                id: '',
+                fullName: '',
+                yearsOfLife: '',
+                gender: '',
+                relationship: '',
+            }
+        }
+        else {
+            this._editNode = {
+                id: node.id,
+                fullName: node.fullName,
+                yearsOfLife: node.yearsOfLife,
+                gender: node.gender,
+                relationship: node.relationship,
+            }
         }
     }
     @Output() leaf: EventEmitter<TreeNode> = new EventEmitter<TreeNode>();

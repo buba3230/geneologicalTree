@@ -10,8 +10,13 @@ import { LeafClass } from './models/leaf-abstract-class';
              [ngClass]="node.relationship ? node.relationship + '-leaf' : ''"
              (click)="_leafSelected(node)" [class]="node.gender">
              <div class="avatar">
-                   <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
-                 </div>
+              <ng-container *ngIf="node.gender==='male'">
+                <img src="/assets/imgs/default.png" alt="avatar" class="avatar">
+              </ng-container>
+              <ng-container *ngIf="node.gender==='female'">
+                <img src="/assets/imgs/woo.png" alt="avatar" class="avatar">
+              </ng-container>
+             </div>
                  <br>
                  {{child.id}} ) {{node.fullName}}:<br>{{node.gender}}<br>{{node.yearsOfLife}}</span>
     </div>

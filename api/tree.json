@@ -160,7 +160,21 @@
                   "relationship": ""
                 }
               ],
-              "children": []
+              "children": [
+                {
+                  "id": "15",
+                  "nodes": [
+                    {
+                      "id": "15",
+                      "fullName": "Grand Grand Child 3",
+                      "yearsOfLife": "2000-...",
+                      "gender": "male",
+                      "relationship": ""
+                    }
+                  ],
+                  "children": []
+                }
+              ]
             },
             {
               "id": "11",
@@ -168,12 +182,26 @@
                 {
                   "id": "11",
                   "fullName": "Grand Child 8",
-                  "yearsOfLife": "1970-...",
+                  "yearsOfLife": "1970-2022",
                   "gender": "male",
                   "relationship": ""
                 }
               ],
-              "children": []
+              "children": [
+                {
+                  "id": "14",
+                  "nodes": [
+                    {
+                      "id": "14",
+                      "fullName": "Grand grand Child 4",
+                      "yearsOfLife": "2020-...",
+                      "gender": "female",
+                      "relationship": ""
+                    }
+                  ],
+                  "children": []
+                }
+              ]
             }
           ]
         }
